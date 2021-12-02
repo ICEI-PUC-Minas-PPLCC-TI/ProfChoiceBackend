@@ -1,21 +1,33 @@
 package com.profchoice.profchoicebackend.models;
 
-public class Thread {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
+@Entity(name = "thread")
+public class Thread {
+  @Id
+  @Column(name = "id_thread")
   private int id_thread;
+
+  @Column(name = "conteudo")
   private String conteudo;
-  private String authorThread;
+
+  @ManyToOne()
+  @JoinColumn(name = "email_autor", referencedColumnName = "email")
+  private Cadastro author;
+  // private String authorThread;
 
   public Thread() {
 
   }
 
-  public Thread(int id_thread, String conteudo, String authorThread) {
-
-    this.id_thread = id_thread;
+  public Thread(String conteudo, Cadastro autor) {
     this.conteudo = conteudo;
-    this.authorThread = authorThread;
-
+    this.author = autor;
   }
 
   public int getId_thread() {
@@ -34,12 +46,16 @@ public class Thread {
     this.conteudo = conteudo;
   }
 
-  public String getAuthorThread() {
-    return authorThread;
+  public Cadastro getAuthor() {
+    return author;
   }
 
-  public void setAuthorThread(String authorThread) {
-    this.authorThread = authorThread;
-  }
+  // public String getAuthorThread() {
+  // return authorThread;
+  // }
+
+  // public void setAuthorThread(String authorThread) {
+  // this.authorThread = authorThread;
+  // }
 
 }

@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
 import java.util.List;
 
 @Entity(name = "cadastro")
@@ -20,6 +22,9 @@ public class Cadastro {
 
   @ManyToMany(mappedBy = "avaliadores")
   private List<Cursos> cursos;
+
+  @OneToMany(mappedBy = "id_comentario")
+  private List<Comentario> comentarios;
 
   public Cadastro(String email, String nome, String senha) {
     this.email = email;
